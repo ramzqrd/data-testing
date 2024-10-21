@@ -4,13 +4,13 @@ using static UnitTest.Functions;
 namespace Comparison
 {
     [TestClass]
-    public class ProviderComparisonTest
+    public class ComparisonTest
     {
         private static double Best = 0;
         private static Dictionary<string, double> TotalError = new();
         private static double Worst = 0;
 
-        static ProviderComparisonTest()
+        static ComparisonTest()
         {
             double err12 = CumulativeSquareError(Models.Data.Provider1, Models.Data.Provider2);
             double err23 = CumulativeSquareError(Models.Data.Provider2, Models.Data.Provider3);
