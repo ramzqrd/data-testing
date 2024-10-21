@@ -4,6 +4,8 @@ namespace Models
 {
     public class Quote
     {
+        public const string HEADER = "Date,Open,High,Low,Close,Volume";
+
         public readonly DateTime Date;
         public readonly double Open;
         public readonly double High;
@@ -32,7 +34,6 @@ namespace Models
             Liquidity = Average * Volume;
         }
 
-        public string Header() => "Date,Open,High,Low,Close,Volume";
 
         public static List<Quote> Load(string path)
         {
@@ -59,7 +60,8 @@ namespace Models
 
         public static void Save(string path, List<Quote> quotes)
         {
-
+            File.WriteAllText(path, HEADER + "\n");
+            File.AppendAllLines(path, quotes.Select(q => q.ToString()));
         }
 
         public override string ToString()
