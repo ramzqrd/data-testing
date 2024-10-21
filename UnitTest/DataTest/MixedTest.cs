@@ -1,12 +1,12 @@
 ﻿using Models;
 using static UnitTest.Functions;
 
-namespace UnitTest
+namespace Data
 {
     [TestClass]
     public class MixedTest
     {
-        private readonly string Folder = Data.Mixed;
+        private readonly string Folder = Models.Data.Mixed;
 
         [TestMethod]
         public void All_Dates_Are_Past()

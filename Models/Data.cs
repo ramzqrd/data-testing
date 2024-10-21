@@ -19,14 +19,23 @@ namespace Models
         public static readonly string Objective = Path.Combine(Root, nameof(Objective));
         public static readonly string Subjective = Path.Combine(Root, nameof(Subjective));
 
+        // These are the mock data providers
+        public static readonly string Provider1 = Path.Combine(Root, nameof(Provider1));
+        public static readonly string Provider2 = Path.Combine(Root, nameof(Provider2));
+        public static readonly string Provider3 = Path.Combine(Root, nameof(Provider3));
+
+
         static Data()
         {
             // Ensure that the full directory structure is in place before any use of data
             if (!Directory.Exists(Root)) Directory.CreateDirectory(Root);
             if (!Directory.Exists(Clean)) Directory.CreateDirectory(Clean);
+            if (!Directory.Exists(Mixed)) Directory.CreateDirectory(Mixed);
             if (!Directory.Exists(Objective)) Directory.CreateDirectory(Objective);
             if (!Directory.Exists(Subjective)) Directory.CreateDirectory(Subjective);
-            if (!Directory.Exists(Mixed)) Directory.CreateDirectory(Mixed);
+            if (!Directory.Exists(Provider1)) Directory.CreateDirectory(Provider1);
+            if (!Directory.Exists(Provider2)) Directory.CreateDirectory(Provider2);
+            if (!Directory.Exists(Provider3)) Directory.CreateDirectory(Provider3);
             if (Directory.GetFiles(Clean).Length == 0)
             {
                 string zip = Path.Combine(nameof(Data), nameof(Clean) + ".zip");

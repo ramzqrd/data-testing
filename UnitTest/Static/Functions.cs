@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using static System.Math;
 using Values = (System.DateTime Date, double Open, double High, double Low, double Close, double Volume);
 
 namespace UnitTest
@@ -22,6 +23,48 @@ namespace UnitTest
                 }
             }
             return true;
+        }
+
+        internal static double CumulativeSquareError(string folder1, string folder2)
+        {
+            double cse = 0;
+            List<string> files1 = Directory.GetFiles(folder1).Select(f => Path.GetFileName(f)).ToList();
+            List<string> files2 = Directory.GetFiles(folder2).Select(f => Path.GetFileName(f)).ToList();
+            List<string> files = files1.Intersect(files2).ToList();
+            for (int i = 0; i < files.Count; i++)
+            {
+                string file1 = Path.Combine(folder1, files1[i]);
+                List<Values> values1 = GetValues(file1);
+                string file2 = Path.Combine(folder2, files2[i]);
+                List<Values> values2 = GetValues(file2);
+                cse += HistoricalSeriesSquareDistance(values1, values2);
+            }
+            return cse;
+        }
+
+        private static double HistoricalSeriesSquareDistance(List<Values> values1, List<Values> values2)
+        {
+            double hse = 0;
+            List<DateTime> dates = values1.Select(v => v.Date).Intersect(values2.Select(v => v.Date)).ToList();
+            values1.RemoveAll(v => !dates.Contains(v.Date));
+            values2.RemoveAll(v => !dates.Contains(v.Date));
+            for (int i = 0; i < dates.Count; i++)
+            {
+                Values v1 = values1[i];
+                Values v2 = values2[i];
+                hse += Pow(Log(v1.Open / v2.Open), 2);
+                hse += Pow(Log(v1.High / v2.High), 2);
+                hse += Pow(Log(v1.Low / v2.Low), 2);
+                hse += Pow(Log(v1.Close / v2.Close), 2);
+            }
+            return hse;
+        }
+
+        public static List<Values> GetValues(string file)
+        {
+            string[] lines = File.ReadAllLines(file).Skip(1).ToArray();
+            List<Values> valueList = lines.Select(Values).ToList();
+            return valueList;
         }
 
         public static bool NoNAN(string folder)

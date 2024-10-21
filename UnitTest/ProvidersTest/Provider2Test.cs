@@ -1,12 +1,12 @@
-using Models;
+﻿using Models;
 using static UnitTest.Functions;
 
-namespace UnitTest
+namespace Provider
 {
     [TestClass]
-    public class ObjectiveTest
+    public class Provider2Test
     {
-        private readonly string Folder = Data.Objective;
+        private readonly string Folder = Models.Data.Provider2;
 
         [TestMethod]
         public void All_Dates_Are_Past()
