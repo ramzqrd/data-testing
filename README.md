@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="">
-    <img src="logo.png" alt="Logo" width="auto" height="150">
+  <a href="https://alramz.ae/">
+    <img src="images/logo.png" alt="Logo" width="auto" height="150">
   </a>
 
   <h3 align="center"> Financial Data - Unit Tests </h3>
@@ -39,31 +39,20 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<div id="aboutt"></div>
-Description goes here...
-
-Bullet Points:
-* Bullet Point #1
-* Bullet Point #2
-* Bullet Point #3
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut bibendum orci, quis sollicitudin purus. 
-Etiam malesuada et erat nec ullamcorper. Etiam tempus arcu in ipsum cursus, id fermentum est venenatis. 
-Proin eleifend et magna a pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; 
-Nunc eu pellentesque augue. Sed mi est, suscipit et risus non, ultricies tincidunt diam. Vivamus fermentum porttitor libero non pulvinar. 
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam justo arcu, pretium vel malesuada vel, semper id lorem. Suspendisse eget velit felis. Sed laoreet quis dui sit amet tristique.
-
-
+This repository provides a comprehensive toolkit for testing historical financial data using both objective and subjective approaches. The objective tests focus on validating data integrity through concrete rules, such as ensuring the Open price is lower than the Low for that day and positive trading volumes, while the subjective tests compare data from multiple sources, selecting the most reliable one using metrics like Least Mean Squared Error (LMSE). With well-documented code snippets and examples, this repository serves as a valuable resource for developers and analysts looking to ensure the accuracy and quality of market data in financial models. Whether you're new to finance or an experienced professional, the toolkit simplifies the process of validating historical data.
 <p id="about-the-project" align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 <div ></div>
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* C# (C# logo)
-* .NET 8
+The project was built using the following frameworks/languages. Make sure to have the frameworks installed in order to run the project.
+<br> <br>
+<a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0">
+    <img src="images/dotnet.png" alt="Logo" width="auto" height="120">
+</a>
+ <br>
+<a href="https://dotnet.microsoft.com/en-us/languages/csharp">
+    <img src="images/csharp.png" alt="Logo" width="auto" height="150">
+  </a>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
