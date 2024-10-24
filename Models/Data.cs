@@ -53,25 +53,44 @@ namespace Models
             files.ToList().ForEach(File.Delete);
         }
 
+        // Generates error data for each file in the specified folder using a provided error-generating function.
         public static void CreateErrorData(string folder, Func<string, string> errorGenerator)
         {
-            CleanFolder(folder);
+            CleanFolder(folder); // Clean the specified folder before creating error data.
+
+            // Get all file paths from the cleaned folder.
             string[] files = Directory.GetFiles(Clean);
+
+            // Loop through each file in the folder.
             for (int i = 0; i < files.Length; i++)
             {
-                string source = files[i];
-                string name = Path.GetFileName(source);
+                string source = files[i]; // Get the file path.
+                string name = Path.GetFileName(source); // Get the file name.
+
+                // Read all lines from the source file.
                 string[] lines = File.ReadAllLines(source);
-                List<string> newlines = [lines[0]];
+
+                // Initialize a new list of lines starting with the header.
+                List<string> newlines = new List<string> { lines[0] };
+
+                // Apply the error generator function to each line (except the header).
                 List<string> modifiedLines = lines.Skip(1).Select(errorGenerator).ToList();
+
+                // Add modified lines to the new list.
                 newlines.AddRange(modifiedLines);
+
+                // Define the destination path for the new file.
                 string destination = Path.Combine(folder, name);
+
+                // Write the new lines to the destination file.
                 File.WriteAllLines(destination, newlines);
             }
         }
 
+        // Generates a random error percentage based on a predefined maximum error percentage.
         public static double ErrorPercentage() => Random.Shared.NextDouble() * ERRORPERCENTAGE;
 
+        // Generates a mix of both subject and objective errors
         public static string MixedError(string line)
         {
             string newLine = SubjectiveError(line);
@@ -79,41 +98,59 @@ namespace Models
             return newLine;
         }
 
+        // Modifies the data by introducing random objective errors into the trading data values (date, open, high, low, close, volume).
         public static string ObjectiveError(string line)
         {
+            // Split the line by commas and trim whitespace from each value.
             string[] values = line.Split(',').Select(v => v.Trim()).ToArray();
+
+            // Parse the date and numeric values using invariant culture.
             DateTime date = DateTime.Parse(values[0], CultureInfo.InvariantCulture);
             double open = double.Parse(values[1], CultureInfo.InvariantCulture);
             double high = double.Parse(values[2], CultureInfo.InvariantCulture);
             double low = double.Parse(values[3], CultureInfo.InvariantCulture);
             double close = double.Parse(values[4], CultureInfo.InvariantCulture);
             double volume = double.Parse(values[5], CultureInfo.InvariantCulture);
-            if (AddError()) date = date.AddDays(Random.Shared.Next(1, 365));
-            if (AddError()) open = Random.Shared.Next(2) == 1 ? high * (1 + ErrorPercentage()) : low * (1 - ErrorPercentage());
-            if (AddError()) high = Random.Shared.Next(2) == 1 ? open * (1 - ErrorPercentage()) : close * (1 - ErrorPercentage());
-            if (AddError()) low = Random.Shared.Next(2) == 1 ? open * (1 + ErrorPercentage()) : close * (1 + ErrorPercentage());
-            if (AddError()) close = Random.Shared.Next(2) == 1 ? high * (1 + ErrorPercentage()) : low * (1 - ErrorPercentage());
-            if (AddError()) volume = -volume;
+
+            // Introduce errors randomly based on conditions.
+            if (AddError()) date = date.AddDays(Random.Shared.Next(1, 365)); // Randomly alter the date.
+            if (AddError()) open = Random.Shared.Next(2) == 1 ? high * (1 + ErrorPercentage()) : low * (1 - ErrorPercentage()); // Modify the open price.
+            if (AddError()) high = Random.Shared.Next(2) == 1 ? open * (1 - ErrorPercentage()) : close * (1 - ErrorPercentage()); // Modify the high price.
+            if (AddError()) low = Random.Shared.Next(2) == 1 ? open * (1 + ErrorPercentage()) : close * (1 + ErrorPercentage()); // Modify the low price.
+            if (AddError()) close = Random.Shared.Next(2) == 1 ? high * (1 + ErrorPercentage()) : low * (1 - ErrorPercentage()); // Modify the close price.
+            if (AddError()) volume = -volume; // Randomly negate the volume.
+
+            // Create a new line formatted with the modified values.
             string newLine = $"{date.ToString(CultureInfo.InvariantCulture)},{open:0.00},{high:0.00},{low:0.00},{close:0.00},{volume:0}";
-            return newLine;
+
+            return newLine; // Return the modified line.
         }
 
+        // Introduces subjective errors into the data representing trading data by modifying the values based on random fluctuations.
         public static string SubjectiveError(string line)
         {
+            // Split the line by commas and trim whitespace from each value.
             string[] values = line.Split(',').Select(v => v.Trim()).ToArray();
+
+            // Parse the date and numeric values from the file
             DateTime date = DateTime.Parse(values[0], CultureInfo.InvariantCulture);
             double open = double.Parse(values[1], CultureInfo.InvariantCulture);
             double high = double.Parse(values[2], CultureInfo.InvariantCulture);
             double low = double.Parse(values[3], CultureInfo.InvariantCulture);
             double close = double.Parse(values[4], CultureInfo.InvariantCulture);
             double volume = double.Parse(values[5], CultureInfo.InvariantCulture);
-            if (AddError()) open = Random.Shared.Next(2) == 1 ? open + (high - open) * Random.Shared.NextDouble() : open + (low - open) * Random.Shared.NextDouble();
-            if (AddError()) high = Random.Shared.Next(2) == 1 ? high + (high - open) * Random.Shared.NextDouble() : high + (high - close) * Random.Shared.NextDouble();
-            if (AddError()) low = Random.Shared.Next(2) == 1 ? low + (low - open) * Random.Shared.NextDouble() : low + (low - close) * Random.Shared.NextDouble();
-            if (AddError()) close = Random.Shared.Next(2) == 1 ? close + (high - close) * Random.Shared.NextDouble() : close + (low - close) * Random.Shared.NextDouble();
-            if (AddError()) volume = Exp(Log(volume) + (2 * Random.Shared.NextDouble() - 1) * ErrorPercentage());
+
+            // Introduce subjective errors randomly based on conditions.
+            if (AddError()) open = Random.Shared.Next(2) == 1 ? open + (high - open) * Random.Shared.NextDouble() : open + (low - open) * Random.Shared.NextDouble(); // Modify the open price.
+            if (AddError()) high = Random.Shared.Next(2) == 1 ? high + (high - open) * Random.Shared.NextDouble() : high + (high - close) * Random.Shared.NextDouble(); // Modify the high price.
+            if (AddError()) low = Random.Shared.Next(2) == 1 ? low + (low - open) * Random.Shared.NextDouble() : low + (low - close) * Random.Shared.NextDouble(); // Modify the low price.
+            if (AddError()) close = Random.Shared.Next(2) == 1 ? close + (high - close) * Random.Shared.NextDouble() : close + (low - close) * Random.Shared.NextDouble(); // Modify the close price.
+            if (AddError()) volume = Exp(Log(volume) + (2 * Random.Shared.NextDouble() - 1) * ErrorPercentage()); // Introduce variability into the volume.
+
+            // Create a new line formatted with the modified values.
             string newLine = $"{date.ToString(CultureInfo.InvariantCulture)},{open:0.00},{high:0.00},{low:0.00},{close:0.00},{volume:0}";
-            return newLine;
+
+            return newLine; // Return the modified line.
         }
     }
 }
