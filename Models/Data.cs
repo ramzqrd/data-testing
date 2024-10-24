@@ -24,7 +24,6 @@ namespace Models
         public static readonly string Provider2 = Path.Combine(Root, nameof(Provider2));
         public static readonly string Provider3 = Path.Combine(Root, nameof(Provider3));
 
-
         static Data()
         {
             // Ensure that the full directory structure is in place before any use of data
@@ -58,10 +57,10 @@ namespace Models
         {
             CleanFolder(folder); // Clean the specified folder before creating error data.
 
-            // Get all file paths from the cleaned folder.
+            // Get all file paths from the Clean folder.
             string[] files = Directory.GetFiles(Clean);
 
-            // Loop through each file in the folder.
+            // Loop through each file in the Clean folder.
             for (int i = 0; i < files.Length; i++)
             {
                 string source = files[i]; // Get the file path.
@@ -90,7 +89,7 @@ namespace Models
         // Generates a random error percentage based on a predefined maximum error percentage.
         public static double ErrorPercentage() => Random.Shared.NextDouble() * ERRORPERCENTAGE;
 
-        // Generates a mix of both subject and objective errors
+        // Generates a mix of both subjective and objective errors
         public static string MixedError(string line)
         {
             string newLine = SubjectiveError(line);
@@ -101,10 +100,10 @@ namespace Models
         // Modifies the data by introducing random objective errors into the trading data values (date, open, high, low, close, volume).
         public static string ObjectiveError(string line)
         {
-            // Split the line by commas and trim whitespace from each value.
+            // Split the line by commas and remove any trailing/leading white-spaces from each value.
             string[] values = line.Split(',').Select(v => v.Trim()).ToArray();
 
-            // Parse the date and numeric values using invariant culture.
+            // Parse the date and numeric values.
             DateTime date = DateTime.Parse(values[0], CultureInfo.InvariantCulture);
             double open = double.Parse(values[1], CultureInfo.InvariantCulture);
             double high = double.Parse(values[2], CultureInfo.InvariantCulture);
@@ -126,7 +125,7 @@ namespace Models
             return newLine; // Return the modified line.
         }
 
-        // Introduces subjective errors into the data representing trading data by modifying the values based on random fluctuations.
+        // Modifies the data by introducing random subjective errors into the trading data values (date, open, high, low, close, volume) by modifying the values based on random fluctuations.
         public static string SubjectiveError(string line)
         {
             // Split the line by commas and trim whitespace from each value.

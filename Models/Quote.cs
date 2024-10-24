@@ -20,7 +20,7 @@ namespace Models
         // Validates the input values to ensure they meet specific criteria for a valid trading quote.
         public Quote(DateTime date, double open, double high, double low, double close, double volume)
         {
-            // Initial high-level checks before creating an object
+            // Initializes an array of doubles with the given values
             double[] values = { open, high, low, close, volume };
 
             // Validate that the date is not in the future.
@@ -65,12 +65,12 @@ namespace Models
             // Read all lines from the file and filter out any empty lines.
             List<string> lines = File.ReadAllLines(path).Where(l => !string.IsNullOrEmpty(l)).ToList();
 
-            // Iterate through each line, starting from the second line (index 1).
+            // Iterate through each line, starting from the second line (index 1), to skip the headers
             for (int i = 1; i < lines.Count; i++)
             {
                 try
                 {
-                    // Split the line into individual values and trim whitespace.
+                    // Split the line by commas into individual values and remove trailing/leading white-spaces.
                     string[] vals = lines[i].Split(',').Select(v => v.Trim()).ToArray();
 
                     // Parse each value into the appropriate data type.
@@ -94,15 +94,14 @@ namespace Models
             return quotes;
         }
 
-
-        // Save data from a list into a file
+        // Save data from a list into a file at the specified path
         public static void Save(string path, List<Quote> quotes)
         {
             File.WriteAllText(path, HEADER + "\n");
             File.AppendAllLines(path, quotes.Select(q => q.ToString()));
         }
 
-        // Output a string displaying data for each date
+        // Output a string displaying data for each date in the given format
         public override string ToString()
         {
             return $"{Date.ToString(CultureInfo.InvariantCulture)},{Open:0.00},{High:0.00},{Low:0.00},{Close:0.00},{Volume:0}";

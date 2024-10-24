@@ -3,7 +3,7 @@
 namespace Application
 {
     //*********************************
-    // This solution requires .Net 8 
+    // This solution requires .NET 8 
     //*********************************
 
     public class Program
