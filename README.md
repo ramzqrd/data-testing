@@ -2,13 +2,13 @@
 <br />
 <div align="center">
   <a href="">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="logo.png" alt="Logo" width="auto" height="150">
   </a>
 
-  <h3 align="center">Document Title</h3>
+  <h3 align="center"> Financial Data - Unit Tests </h3>
 
   <p align="center">
-    Text goes here
+    A toolkit that showcases the testing of historical financial data through both the objective and subjective approach.
   </p>
 </div>
 
@@ -31,20 +31,15 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Item #3</a></li>
-    <li><a href="#roadmap">Item #4</a></li>
-    <li><a href="#contributing">Item #5</a></li>
-    <li><a href="#license">Item #6</a></li>
-    <li><a href="#contact">Item #7</a></li>
-    <li><a href="#acknowledgments">Item #8</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
+<div id="aboutt"></div>
 Description goes here...
 
 Bullet Points:
@@ -59,12 +54,12 @@ Nunc eu pellentesque augue. Sed mi est, suscipit et risus non, ultricies tincidu
 Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam justo arcu, pretium vel malesuada vel, semper id lorem. Suspendisse eget velit felis. Sed laoreet quis dui sit amet tristique.
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p id="about-the-project" align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 ### Built With
-
+<div ></div>
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * C# (C# logo)
