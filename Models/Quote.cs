@@ -2,6 +2,7 @@
 
 namespace Models
 {
+    // This class includes properties that reflect ones acquired from financial data
     public class Quote
     {
         public const string HEADER = "Date,Open,High,Low,Close,Volume";
@@ -13,10 +14,11 @@ namespace Models
         public readonly double Close;
         public readonly double Volume;
         public readonly double Average;
-        public readonly double Liquidity;
+        public readonly double Liquidity; // The ease to trade without affecting the asset's price
 
         public Quote(DateTime date, double open, double high, double low, double close, double volume)
         {
+            // Initial high level checks before creating an object
             double[] values = { open, high, low, close, volume };
             if (date > DateTime.Now) throw new ArgumentException("Date is in the future.");
             if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday) throw new ArgumentException("Date is not a valid trading day.");
@@ -34,7 +36,7 @@ namespace Models
             Liquidity = Average * Volume;
         }
 
-
+        // Read data from a file and store in a list
         public static List<Quote> Load(string path)
         {
             List<Quote> quotes = new List<Quote>();
@@ -58,12 +60,14 @@ namespace Models
             return quotes;
         }
 
+        // Save data from a list into a file
         public static void Save(string path, List<Quote> quotes)
         {
             File.WriteAllText(path, HEADER + "\n");
             File.AppendAllLines(path, quotes.Select(q => q.ToString()));
         }
 
+        // Output a string displaying data for each date
         public override string ToString()
         {
             return $"{Date.ToString(CultureInfo.InvariantCulture)},{Open:0.00},{High:0.00},{Low:0.00},{Close:0.00},{Volume:0}";

@@ -43,8 +43,10 @@ namespace Models
             }
         }
 
+        // Returns true if a random number is below the error rate.
         public static bool AddError() => Random.Shared.NextDouble() < ERRORRATE;
 
+        // Delete existing files in order to generate new ones
         public static void CleanFolder(string folder)
         {
             string[] files = Directory.GetFiles(folder);

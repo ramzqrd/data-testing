@@ -16,12 +16,12 @@ namespace Application
 
         private static void CreateErrors()
         {
-            Data.CreateErrorData(Data.Objective, Data.ObjectiveError);
-            Data.CreateErrorData(Data.Subjective, Data.SubjectiveError);
-            Data.CreateErrorData(Data.Mixed, Data.MixedError);
+            Data.CreateErrorData(Data.Objective, Data.ObjectiveError); // Create data with objective errors
+            Data.CreateErrorData(Data.Subjective, Data.SubjectiveError); // Create data with subjective errors
+            Data.CreateErrorData(Data.Mixed, Data.MixedError); // Create data with with a mix of both subjective and objective errors
         }
 
-        private static void CreateProviders()
+        private static void CreateProviders() // Create multiple providers with different error rates
         {
             Data.ERRORPERCENTAGE = 0.06;
             Data.ERRORRATE = 0.10;
