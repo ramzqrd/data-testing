@@ -16,8 +16,8 @@ namespace Models
         public readonly double Average;
         public readonly double Liquidity; // The ease to trade without affecting the asset's price
 
-        // Represent a financial quote with associated date, OHLC (Open, High, Low, Close) prices, volume, average price, and liquidity.
-        // Validate the input values to ensure they meet specific criteria for a valid trading quote.
+        /* Represent a financial quote with associated date, OHLC (Open, High, Low, Close) prices, volume, average price, and liquidity.
+           Validate the input values to ensure they meet specific criteria for a valid trading quote. */
         public Quote(DateTime date, double open, double high, double low, double close, double volume)
         {
             // Initialize an array of doubles with the given values

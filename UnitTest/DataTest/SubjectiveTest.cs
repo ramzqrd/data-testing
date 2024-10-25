@@ -1,4 +1,3 @@
-using Models;
 using static UnitTest.Functions;
 
 namespace Data
