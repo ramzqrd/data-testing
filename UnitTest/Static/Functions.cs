@@ -64,9 +64,9 @@ namespace UnitTest
         }
 
 
-        /* Computes the "square distance" between two historical price series by finding common dates, 
-           then summing the squared logarithmic differences of the Open, High, Low, and Close prices 
-           for those dates. Returns the total squared error (hse). */
+        /* Compute the "square distance" between two historical price series by identifying common dates, 
+           then summing the squared logarithmic ratios of the Open, High, Low, and Close prices 
+           for those shared dates. Return the total squared error (hse). */
         private static double HistoricalSeriesSquareDistance(List<Values> values1, List<Values> values2)
         {
             double hse = 0; // Initialize the total squared error (hse) to 0.
@@ -84,7 +84,7 @@ namespace UnitTest
                 Values v1 = values1[i]; // Get the value from the first series.
                 Values v2 = values2[i]; // Get the corresponding value from the second series.
 
-                // Calculate and accumulate the squared logarithmic differences for Open, High, Low, and Close prices.
+                // Calculate and accumulate the squared logarithmic ratios for Open prices (and similarly for the High, Low, and Close prices) between the first and second series.
                 hse += Pow(Log(v1.Open / v2.Open), 2);
                 hse += Pow(Log(v1.High / v2.High), 2);
                 hse += Pow(Log(v1.Low / v2.Low), 2);
@@ -104,7 +104,7 @@ namespace UnitTest
             return valueList;
         }
 
-        // This method ensures there are no non numberic values in the data
+        // This method ensures there are no non-numeric values in the data
         public static bool NoNAN(string folder)
         {
             // Get all file paths from the specified folder.
