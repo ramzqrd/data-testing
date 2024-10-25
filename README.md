@@ -87,7 +87,7 @@ To get a local copy up and running follow these simple example steps.
 <!-- License -->
 ## License
 <div  id="license"> </div>
-Distributed under the MIT License, widely adopted, permissive open-source license that allows users to:
+Distributed under the <b>MIT</b> License, a widely adopted, permissive open-source license that allows users to:
 <ul> 
 <li> Use the software for any purpose. </li>
 <li> Modify the software. </li>
