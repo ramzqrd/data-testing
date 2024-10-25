@@ -4,9 +4,10 @@ using System.IO.Compression;
 
 namespace Models
 {
+    // This class includes methods for reading data folders and introducing objective, subjective, and mixed errors into the original datasets based on a specified error rate and percentage.
     public static class Data
     {
-        // Set the default artificial error rate and percentage amount on values
+        // Set default values for the artificial error rate (indicating the acceptable error level in the dataset) and the error percentage (applied to modify the original dataset values).
         public static double ERRORPERCENTAGE = 0.05;
         public static double ERRORRATE = 0.03;
 
@@ -42,7 +43,7 @@ namespace Models
             }
         }
 
-        // Returns true if a random number is below the error rate.
+        // Return true if a random number is below the error rate.
         public static bool AddError() => Random.Shared.NextDouble() < ERRORRATE;
 
         // Delete existing files in order to generate new ones
@@ -52,7 +53,7 @@ namespace Models
             files.ToList().ForEach(File.Delete);
         }
 
-        // Generates error data for each file in the specified folder using a provided error-generating function.
+        // Generate error data for each file in the specified folder using a provided error-generating function.
         public static void CreateErrorData(string folder, Func<string, string> errorGenerator)
         {
             CleanFolder(folder); // Clean the specified folder before creating error data.
@@ -86,10 +87,10 @@ namespace Models
             }
         }
 
-        // Generates a random error percentage based on a predefined maximum error percentage.
+        // Generate a random error percentage based on a predefined maximum error percentage.
         public static double ErrorPercentage() => Random.Shared.NextDouble() * ERRORPERCENTAGE;
 
-        // Generates a mix of both subjective and objective errors
+        // Generate a mix of both subjective and objective errors
         public static string MixedError(string line)
         {
             string newLine = SubjectiveError(line);
@@ -97,7 +98,7 @@ namespace Models
             return newLine;
         }
 
-        // Modifies the data by introducing random objective errors into the trading data values (date, open, high, low, close, volume).
+        // Modify the data by introducing random objective errors into the trading data values (date, open, high, low, close, volume).
         public static string ObjectiveError(string line)
         {
             // Split the line by commas and remove any trailing/leading white-spaces from each value.
@@ -125,7 +126,7 @@ namespace Models
             return newLine; // Return the modified line.
         }
 
-        // Modifies the data by introducing random subjective errors into the trading data values (date, open, high, low, close, volume) by modifying the values based on random fluctuations.
+        // Modify the data by introducing random subjective errors into the trading data values (date, open, high, low, close, volume) by modifying the values based on random fluctuations.
         public static string SubjectiveError(string line)
         {
             // Split the line by commas and trim whitespace from each value.
