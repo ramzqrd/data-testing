@@ -2,7 +2,7 @@
 
 namespace Models
 {
-    // This class includes properties that reflect ones acquired from financial data
+    // This class includes properties that reflect ones acquired from financial data. It also includes methods to load and save datasets.
     public class Quote
     {
         public const string HEADER = "Date,Open,High,Low,Close,Volume";
@@ -16,11 +16,11 @@ namespace Models
         public readonly double Average;
         public readonly double Liquidity; // The ease to trade without affecting the asset's price
 
-        // Represents a financial quote with associated date, OHLC (Open, High, Low, Close) prices, volume, average price, and liquidity.
-        // Validates the input values to ensure they meet specific criteria for a valid trading quote.
+        // Represent a financial quote with associated date, OHLC (Open, High, Low, Close) prices, volume, average price, and liquidity.
+        // Validate the input values to ensure they meet specific criteria for a valid trading quote.
         public Quote(DateTime date, double open, double high, double low, double close, double volume)
         {
-            // Initializes an array of doubles with the given values
+            // Initialize an array of doubles with the given values
             double[] values = { open, high, low, close, volume };
 
             // Validate that the date is not in the future.
@@ -56,8 +56,8 @@ namespace Models
             Liquidity = Average * Volume;
         }
 
-        // Loads a list of financial quotes from a specified CSV file path.
-        // Parses each line to create Quote objects, skipping empty lines and handling any parsing errors.
+        // Load a list of financial quotes from a specified CSV file path.
+        // Parse each line to create Quote objects, skipping empty lines and handling any parsing errors.
         public static List<Quote> Load(string path)
         {
             List<Quote> quotes = new List<Quote>();
