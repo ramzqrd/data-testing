@@ -38,7 +38,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This repository provides a comprehensive toolkit for testing historical financial data using both objective and subjective approaches. The objective tests focus on validating data integrity through concrete rules, such as ensuring the Open price is lower than the Low for that day and positive trading volumes, while the subjective tests compare data from multiple sources, selecting the most reliable one using metrics like Least Mean Squared Error (LMSE). With well-documented code snippets and examples, this repository serves as a valuable resource for developers and analysts looking to ensure the accuracy and quality of market data in financial models. Whether you're new to finance or an experienced professional, the toolkit simplifies the process of validating historical data.
+This repository provides a comprehensive toolkit for testing historical financial data using both objective and subjective approaches. The objective tests focus on validating data integrity through concrete rules, such as ensuring the open price is higher than the low for that day and positive trading volumes, while the subjective tests compare data from multiple sources, selecting the most reliable one using metrics like Least Mean Squared Error (LMSE). With well-documented code snippets and examples, this repository serves as a valuable resource for developers and analysts looking to ensure the accuracy and quality of market data in financial models. Whether you're new to finance or an experienced professional, the toolkit simplifies the process of validating historical data.
 <p id="about-the-project" align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
