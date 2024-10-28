@@ -35,7 +35,6 @@ namespace UnitTest
             return true;
         }
 
-
         internal static double CumulativeSquareError(string folder1, string folder2)
         {
             double cse = 0; // Initialize the cumulative squared error (cse) to 0.
@@ -62,7 +61,6 @@ namespace UnitTest
             }
             return cse; // Return the total cumulative squared error.
         }
-
 
         /* Compute the "square distance" between two historical price series by identifying common dates, 
            then summing the squared logarithmic ratios of the Open, High, Low, and Close prices 
