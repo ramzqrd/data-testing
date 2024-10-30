@@ -11,8 +11,20 @@ namespace Application
         // The main method is the starting point of the program and manages the flow of the application.
         static void Main(string[] args)
         {
-            CreateErrors(); // Run this whenever you want to generate a new set of data with errors
-            CreateProviders(); // Run to generate data from mock data providers
+            Console.Write("Create error data and relative folders? (Y/N) ");
+            char response = Console.ReadKey().KeyChar;
+            if (response == 'Y' || response == 'y')
+            {
+                Console.WriteLine("\nCreating error data...");
+                CreateErrors(); // Run this whenever you want to generate a new set of data with errors
+            }
+            Console.Write("\nCreate providers data and relative folders? (Y/N) ");
+            response = Console.ReadKey().KeyChar;
+            if (response == 'Y' || response == 'y')
+            {
+                Console.WriteLine("\nCreating providers data...");
+                CreateProviders(); // Run to generate data from mock data providers
+            }
         }
 
         private static void CreateErrors()
@@ -24,7 +36,8 @@ namespace Application
 
         /* This method generates multiple datasets with varying error rates and percentages, which will be utilized to rank the resulting datasets
          according to their accuracy using the least squares distance method. */
-        private static void CreateProviders() { 
+        private static void CreateProviders()
+        {
             Data.ERRORPERCENTAGE = 0.06;
             Data.ERRORRATE = 0.10;
             Data.CreateErrorData(Data.Provider1, Data.SubjectiveError);
