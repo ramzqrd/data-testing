@@ -51,7 +51,7 @@ namespace Data
 
         // Run this test to verify if all values returned are consistent to basic market rules
         [TestMethod]
-        public void OHLC_Values_Are_Inconsistent()
+        public void OHLC_Values_Are_Consistent()
         {
             Assert.IsTrue(OHLCConsistent(Folder));
         }
