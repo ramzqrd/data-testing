@@ -67,7 +67,8 @@ To get a local copy up and running follow these simple example steps.
 <h3> Installations </h3>
 <div  id="installations"> </div>
 <ol>
-  <li> If you haven’t installed <b> Visual Studio 2022 </b>, download it from <a href = "https://visualstudio.microsoft.com/"> Microsoft's Visual Studio page </a>. </li>
+  <li> If you're on <b>Windows</b>, make sure you have <b> Visual Studio 2022</b> installed. If you haven’t already, you download it from <a href = "https://visualstudio.microsoft.com/"> Microsoft's Visual Studio page </a>. </li>
+  <li> If you're on <b>macOS/Linux</b>, make sure you have <b> Visual Studio Code</b> installed. If you haven't already, you can download it from <a href = "https://code.visualstudio.com/Download"> Visual Studio Code download page </a> </li>
   <li> Make sure you have <b><a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0">.NET 8</a> </b> installed if you haven't installed it already. </li>
   <li> In Visual Studio, Go to <b>File</b> > <b>Clone Repository</b>.</li>
   <li> Enter the GitHub URL of the repository (https://github.com/ramzqrd/data-testing) </li>
