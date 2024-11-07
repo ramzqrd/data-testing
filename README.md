@@ -98,4 +98,8 @@ Distributed under the <b>MIT</b> License, a widely adopted, permissive open-sour
 <li> Sublicense or include in proprietary software. </li>
 </ul>
 Just make sure to include the original license and copyright notice with any distributed copy.
+
+<p> <b>Disclaimer: </b> The historical data provided is solely for educational or nonprofit purposes and is not intended for commercial use. </p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
